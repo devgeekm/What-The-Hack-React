@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          node-version: '20'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -22,11 +24,13 @@ jobs:
       - name: Log in to Azure
         uses: azure/login@v1
         with:
+          node-version: '20'
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Build and deploy Container App
         uses: azure/container-apps-deploy-action@v1
         with:
+          node-version: '20'
           appSourcePath: ${{ github.workspace }}
           acrName: ${{ vars.AZURE_PREFIX }}acr
           resourceGroup: ${{ vars.AZURE_RG }}
