@@ -1,17 +1,20 @@
 name: Create Azure resources
+
 on: [workflow_dispatch]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     steps:
-
       # Checkout code
       - uses: actions/checkout@v3
 
       # Set up Node.js
       - uses: actions/setup-node@v3
         with:
-          node-version: '22.6.0'
+          node-version: '20'
 
       # Log into Azure
       - uses: azure/login@v1

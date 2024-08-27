@@ -8,6 +8,8 @@
   jobs:
     deploy:
       runs-on: ubuntu-latest
+      env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
       steps:
         - name: Checkout code
           uses: actions/checkout@v3
@@ -15,7 +17,7 @@
         - name: Set up Node.js
           uses: actions/setup-node@v3
           with:
-            node-version: '22.6.0'
+            node-version: '20'
   
         - name: Log in to Azure
           uses: azure/login@v1
