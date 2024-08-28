@@ -1,22 +1,24 @@
 name: Create Azure resources
 
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-
       # Checkout code
-      - uses: actions/checkout@main
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       # Log into Azure
-      - uses: azure/login@v1
+      - name: Log in to Azure
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy Bicep file
-      - name: create resources
+      - name: Create resources
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
